@@ -332,7 +332,7 @@ export default Ember.Component.extend({
     });
 
     if (this.site.mobileView) {
-      this.$(".mobile-file-upload").on("click.uploader", function () {
+      $("#reply-control .mobile-file-upload").on("click.uploader", function () {
         // redirect the click on the hidden file input
         $("#mobile-uploader").click();
       });
@@ -458,7 +458,7 @@ export default Ember.Component.extend({
   @on('willDestroyElement')
   _unbindUploadTarget() {
     this._validUploads = 0;
-    this.$(".mobile-file-upload").off("click.uploader");
+    $("#reply-control .mobile-file-upload").off("click.uploader");
     this.messageBus.unsubscribe("/uploads/composer");
     const $uploadTarget = this.$();
     try { $uploadTarget.fileupload("destroy"); }
