@@ -1,10 +1,18 @@
 #reply-control {
-  
+    z-index: 1002; // d-header is 1001
+
     .reply-area {
       padding: 0 5px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+    }
+
+    &.open {
+      height: 310px;
+      &.edit-title {
+        height: 310px;
+      }
     }
   
     .reply-to {
