@@ -104,6 +104,13 @@
   }
 }
 
+.d-editor-plugin {
+  display: flex;
+  flex-grow: 1;
+  overflow: scroll;
+  background: $secondary;
+}
+
 .d-editor-input {
   border: 0;
   padding: 7px;
