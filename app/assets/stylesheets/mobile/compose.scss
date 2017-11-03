@@ -1,3 +1,11 @@
+.composer-popup-container {
+  display: none !important; // can be removed if inline JS CSS is removed from composer-popup
+}
+
+.composer-popup {
+  display: none !important; // can be removed if inline JS CSS is removed from composer-popup
+}
+
 #reply-control {
     z-index: 1002; // d-header is 1001
 
@@ -11,7 +19,7 @@
     &.open {
       height: 250px;
       &.edit-title {
-        height: 250px;
+        height: 100%;
       }
     }
   
