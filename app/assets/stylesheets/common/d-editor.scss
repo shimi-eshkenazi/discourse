@@ -107,7 +107,7 @@
 .d-editor-plugin {
   display: flex;
   flex-grow: 1;
-  overflow: scroll;
+  overflow: auto;
   background: $secondary;
 }
 
