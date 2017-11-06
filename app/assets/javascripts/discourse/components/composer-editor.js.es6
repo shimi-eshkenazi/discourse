@@ -342,25 +342,28 @@ export default Ember.Component.extend({
   },
 
   _optionsLocation() {
-    let { left, top } = $(".d-editor-button-bar .options").position();
-    top += 10;
+    const composer = $("#reply-control");
+    const composerOffset = composer.offset();
+    const composerPosition = composer.position();
+
+    const buttonBarOffset = $('#reply-control .d-editor-button-bar').offset();
+    const optionsButton = $('#reply-control .d-editor-button-bar .options');
+
+    const popupMenu = $("#reply-control .popup-menu");
+    const popupWidth = popupMenu.outerWidth();
+    const popupHeight = popupMenu.outerHeight();
 
     const headerHeight = $(".d-header").outerHeight();
 
-    const composer = $("#reply-control");
-    const composerPosition = composer.position();
-    const composerWidth = composer.width();
+    let left = optionsButton.offset().left - composerOffset.left;
+    let top = buttonBarOffset.top - composerOffset.top - popupHeight + popupMenu.innerHeight();
 
-    const popupMenu = $("#reply-control .popup-menu");
-    const width = popupMenu.width();
-    const height = popupMenu.height();
-
-    if (top + composerPosition.top - headerHeight - height < 0) {
-      top += height;
+    if (top + composerPosition.top - headerHeight - popupHeight < 0) {
+      top += popupHeight + optionsButton.outerHeight();
     }
 
-    if (left + width > composerWidth) {
-      left -= width;
+    if (left + popupWidth > composer.width()) {
+      left -= popupWidth - optionsButton.outerWidth();
     }
 
     return { position: "absolute", left, top };
