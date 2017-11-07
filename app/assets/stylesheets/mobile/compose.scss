@@ -70,7 +70,37 @@
     .d-editor-textarea-wrapper {
       width: 100%;
     }
-  
+
+    &.show-preview {
+      .d-editor-preview-wrapper {
+        position: fixed;
+        z-index: 1000000;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: $secondary;
+        max-width: 100%;
+        margin: 0;
+        .d-editor-preview {
+          margin-bottom: 40px;
+          overflow: auto;
+        }
+      }
+      .btn.hide-preview {
+        position: fixed;
+        right: 5px;
+        bottom: 5px;
+        z-index: 1000001;
+      }
+    }
+
+    &.hide-preview {
+      .d-editor-preview-wrapper {
+        display: none;
+      }        
+    }
+    
     .d-editor-button-bar {
       display: none;
     }
