@@ -141,7 +141,8 @@
     flex-basis: 50%;
     display: flex;
     align-items: center;
-    #draft-status, #file-uploading {
+    #draft-status,
+    #file-uploading {
       margin-left: 25px;
     }
     #file-uploading {
