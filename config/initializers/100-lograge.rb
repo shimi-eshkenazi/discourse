@@ -42,7 +42,6 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
           }
         ],
         customize_event: ->(event) {
-          event['host'] = `hostname`.chomp
           event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
           event['severity_name'] = event['severity']
           event['type'] = 'rails'
