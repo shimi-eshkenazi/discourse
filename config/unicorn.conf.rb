@@ -18,7 +18,6 @@ if ENV["UNICORN_JSON_LOG_FORMAT"]
     },
   )
 
-  unicorn_logger.formatter = UnicornJSONLogFormatter.new
   logger unicorn_logger
 end
 
