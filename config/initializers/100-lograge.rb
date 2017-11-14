@@ -34,10 +34,12 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
 
       config.lograge.logger = LogStashLogger.new(
         type: :multi_delegator,
+        sync: true,
         outputs: [
           {
             type: :file,
-            path: "#{Rails.root}/logs/#{Rails.env}.log"
+            path: "#{Rails.root}/logs/#{Rails.env}.log",
+            sync: true
           },
           {
             type: :tcp,
