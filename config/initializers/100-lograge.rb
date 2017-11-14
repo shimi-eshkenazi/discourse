@@ -38,7 +38,7 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
         outputs: [
           {
             type: :file,
-            path: "#{Rails.root}/logs/#{Rails.env}.log",
+            path: "#{Rails.root}/log/#{Rails.env}.log",
             sync: true
           },
           {
