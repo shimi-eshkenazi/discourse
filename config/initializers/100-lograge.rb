@@ -17,12 +17,26 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
         database: RailsMultisite::ConnectionManagement.current_db,
       }
 
-      output[:time] = event.time unless logstash_formatter
+      if logstash_formatter
+        output[:type] = :rails
+      else
+        output[:time] = event.time
+      end
+
       output
     end
 
     if logstash_formatter
       config.lograge.formatter = Lograge::Formatters::Logstash.new
+
+      require 'logstash-logger'
+
+      config.lograge.logger = LogStashLogger.new(
+        type: :tcp,
+        host: 'logstash-node-json',
+        port: 5151,
+        sync: true
+      )
     end
   end
 end

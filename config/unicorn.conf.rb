@@ -1,8 +1,16 @@
 # See http://unicorn.bogomips.org/Unicorn/Configurator.html
 
 if ENV["UNICORN_JSON_LOG_FORMAT"]
-  unicorn_logger = Logger.new($stderr)
+  require 'logstash-logger'
   require_relative '../lib/unicorn/unicorn_json_log_formatter'
+
+  unicorn_logger = LogStashLogger.new(
+    type: :tcp,
+    host: 'logstash-node-json',
+    port: 5151,
+    sync: true
+  )
+
   unicorn_logger.formatter = UnicornJSONLogFormatter.new
   logger unicorn_logger
 end

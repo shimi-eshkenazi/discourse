@@ -8,6 +8,7 @@ class UnicornJSONLogFormatter < Logger::Formatter
       datetime: DateTime.parse(datetime.to_s).to_s,
       progname: progname || '',
       pid: $$,
+      type: :unicorn
     }
 
     default[:message] =
