@@ -2,7 +2,6 @@
 
 if ENV["UNICORN_JSON_LOG_FORMAT"]
   require 'logstash-logger'
-  require_relative '../lib/unicorn/unicorn_json_log_formatter'
 
   unicorn_logger = LogStashLogger.new(
     type: :tcp,
