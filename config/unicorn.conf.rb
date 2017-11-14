@@ -8,7 +8,14 @@ if ENV["UNICORN_JSON_LOG_FORMAT"]
     type: :tcp,
     host: 'logstash-node-json',
     port: 5151,
-    sync: true
+    sync: true,
+    customize_event: ->(event) {
+      event['host'] = `hostname`.chomp
+      event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
+      event['severity_name'] = event['severity']
+      event['type'] = 'unicorn'
+      event.delete('severity')
+    },
   )
 
   unicorn_logger.formatter = UnicornJSONLogFormatter.new

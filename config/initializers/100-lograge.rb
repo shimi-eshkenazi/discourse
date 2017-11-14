@@ -15,14 +15,7 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
       output = {
         params: params.to_query,
         database: RailsMultisite::ConnectionManagement.current_db,
-        hostname: `hostname`,
       }
-
-      if logstash_formatter
-        output[:type] = :rails
-      else
-        output[:time] = event.time
-      end
 
       output
     end
@@ -47,7 +40,14 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
             port: 5151,
             sync: true
           }
-        ]
+        ],
+        customize_event: ->(event) {
+          event['host'] = `hostname`.chomp
+          event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
+          event['severity_name'] = event['severity']
+          event['type'] = 'rails'
+          event.delete('severity')
+        },
       )
     end
   end
