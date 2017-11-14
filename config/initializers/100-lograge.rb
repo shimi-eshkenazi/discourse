@@ -46,7 +46,7 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
           event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
           event['severity_name'] = event['severity']
           event['type'] = 'rails'
-          event.delete('severity')
+          event.remove('severity')
         },
       )
     end

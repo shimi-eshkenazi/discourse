@@ -14,7 +14,7 @@ if ENV["UNICORN_JSON_LOG_FORMAT"]
       event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
       event['severity_name'] = event['severity']
       event['type'] = 'unicorn'
-      event.delete('severity')
+      event.remove('severity')
     },
   )
 
