@@ -15,6 +15,7 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
       output = {
         params: params.to_query,
         database: RailsMultisite::ConnectionManagement.current_db,
+        hostname: `hostname`,
       }
 
       if logstash_formatter
