@@ -26,21 +26,10 @@ if (Rails.env.production? && SiteSetting.logging_provider == 'lograge') || ENV["
       require 'logstash-logger'
 
       config.lograge.logger = LogStashLogger.new(
-        type: :multi_delegator,
+        type: :tcp,
+        host: 'logstash-node-json',
+        port: 5151,
         sync: true,
-        outputs: [
-          {
-            type: :file,
-            path: "#{Rails.root}/log/#{Rails.env}.log",
-            sync: true
-          },
-          {
-            type: :tcp,
-            host: 'logstash-node-json',
-            port: 5151,
-            sync: true
-          }
-        ],
         customize_event: ->(event) {
           event['severity'] = Object.const_get("Logger::Severity::#{event['severity']}")
           event['severity_name'] = event['severity']
