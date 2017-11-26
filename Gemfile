@@ -16,7 +16,7 @@ if rails_master?
 else
   gem 'actionmailer', '~> 5.1'
   gem 'actionpack', '~> 5.1'
-  gem 'actionview', '~> 5.1'
+  gem 'actionview', '~> 4.1'
   gem 'activemodel', '~> 5.1'
   gem 'activerecord', '~> 5.1'
   gem 'activesupport', '~> 5.1'
